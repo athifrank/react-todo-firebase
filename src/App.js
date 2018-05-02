@@ -62,9 +62,7 @@ class App extends Component {
         let post={
           taskContent:val
         }
-        console.log(prevState);
-      firebase.database().ref().child('task/'+id).update(post);
-
+       firebase.database().ref('task/'+id).set(post);
       }
     }
     window.location.reload();
