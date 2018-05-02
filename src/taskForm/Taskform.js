@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import '../task/task.css';
 
 class Taskform extends Component {
   constructor(props){
@@ -26,7 +26,7 @@ class Taskform extends Component {
 
   render() {
     return (
-      <div>
+      <div id="taskform">
          <input 
           name="task"
           placeholder="add task"

@@ -45,7 +45,6 @@ class App extends Component {
      })
 
      
-
    } 
 
   addNote(task){
@@ -63,15 +62,14 @@ class App extends Component {
         let post={
           taskContent:val
         }
+        console.log(prevState);
       firebase.database().ref().child('task/'+id).update(post);
 
       }
     }
-     this.setState({
-        tasks:prevState
-      })
-  window.location.reload()
+    window.location.reload();
   }
+  
  
   render() {
     return (

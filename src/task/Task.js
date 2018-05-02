@@ -34,7 +34,7 @@ class Task extends Component {
   renderEditAction(){
                 if(this.state.isEdit){
               return(
-                     <input type="text"  ref="editInput" 
+                     <input type="text" style={{width: '11%'}} ref="editInput" 
                      defaultValue={this.taskContent} />
                 );
                   }
@@ -48,7 +48,7 @@ class Task extends Component {
 
     if(this.state.isEdit){
       return(
-               <div>
+               <div className="save">
                <button style={{cursor:'pointer'}} onClick={()=>this.onSaveClick(this.taskId,this.refs.editInput.value)}>Save</button>
                <button style={{cursor:'pointer'}} onClick={this.onCancelClick}>Cancel</button>
               </div>
