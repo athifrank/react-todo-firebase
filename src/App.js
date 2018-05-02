@@ -16,6 +16,7 @@ class App extends Component {
     }
     this.addNote=this.addNote.bind(this);
     this.delNote=this.delNote.bind(this);
+    this.editNote=this.editNote.bind(this);
   }
 
 
@@ -43,6 +44,8 @@ class App extends Component {
       })
      })
 
+     
+
    } 
 
   addNote(task){
@@ -52,11 +55,28 @@ class App extends Component {
   delNote(id){
     this.database.child(id).remove();
   }
+
+  editNote(id,val){
+    const prevState=this.state.tasks;
+    for(let i=0;i<prevState.length;i++){
+      if(prevState[i].id===id){
+        let post={
+          taskContent:val
+        }
+      firebase.database().ref().child('task/'+id).update(post);
+
+      }
+    }
+     this.setState({
+        tasks:prevState
+      })
+  window.location.reload()
+  }
  
   render() {
     return (
       <div >
-         <h1>React todo app</h1>
+         <h1>React firebase-todo app</h1>
          {this.state.tasks.map((task)=>{
           return(
            <Task 
@@ -64,9 +84,11 @@ class App extends Component {
            taskId={task.id} 
            key={task.id}
             delNote={this.delNote}
+            editNote={this.editNote}
            />
           )
          })}
+         <br/><br/>
          <div>
          <Taskform addNote={this.addNote}/>
          </div>
