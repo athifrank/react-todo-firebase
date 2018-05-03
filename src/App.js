@@ -75,11 +75,10 @@ class App extends Component {
       <div >
           <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div className="container">
-              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-              </button>
+              <button className="btn btn-info">{this.props.match.params.name}</button>
               <div className="collapse navbar-collapse" id="navbarResponsive">
                 <ul className="navbar-nav ml-auto">
+                
                   <li className="nav-item">
                     <Link className="btn btn-info" to="/logout">Logout</Link>
                   </li>

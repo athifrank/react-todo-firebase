@@ -34,8 +34,7 @@ setCurrentUser(user) {
     app.auth().signInWithPopup(facebookProvider)
       .then((user, error) => {
         if (error) {
-          //this.toaster.show({ intent: Intent.DANGER, message: "Unable to sign in with Facebook" })
-          console.log(error);
+          alert('Mail id given by same provider...try different one');
         } else {
           this.setCurrentUser(user)
           this.setState({ redirect: true })
@@ -48,8 +47,7 @@ setCurrentUser(user) {
     app.auth().signInWithPopup(googleProvider)
       .then((user, error) => {
         if (error) {
-          //this.toaster.show({ intent: Intent.DANGER, message: "Unable to sign in with Facebook" })
-          console.log(error);
+          alert('Mail id given by same provider...try different one');
         } else {
           this.setCurrentUser(user)
           this.setState({ redirect: true })
@@ -61,7 +59,10 @@ setCurrentUser(user) {
   render() {
 
     if (this.state.redirect === true) {
-      return <Redirect to='/home'/>
+      //return <Redirect to='/home'/>
+      return <Redirect to={'/home/'+this.state.currentUser.credential.idToken+'/'+this.state.currentUser.user.displayName}/>
+      //console.log(this.state.currentUser);
+
     }
 
     return (

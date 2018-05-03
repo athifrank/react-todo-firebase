@@ -10,7 +10,7 @@ ReactDOM.render(
 	<Router>
     <Switch>
         <Route path='/' exact component={Login} />
-        <Route path='/home' exact  component={App} />
+        <Route path='/home/:token/:name' exact  component={App} />
         <Route path='/logout' exact  component={Logout} />
     </Switch>
     </Router>, document.getElementById('root'));
