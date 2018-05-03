@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
+import { Link } from 'react-router-dom';
 import Task from './task/Task';
 import Taskform from './taskForm/Taskform';
-import {DB_CONFIG} from './config/config';
+import {app} from './config/config';
 
 class App extends Component {
   constructor(props){
     super(props);
 
-    this.app=firebase.initializeApp(DB_CONFIG);
+    this.app=app;
     this.database=this.app.database().ref().child('task');
 
     this.state={
@@ -72,22 +73,48 @@ class App extends Component {
   render() {
     return (
       <div >
-         <h1>React firebase-todo app</h1>
-         {this.state.tasks.map((task)=>{
-          return(
-           <Task 
-           taskContent={task.taskContent} 
-           taskId={task.id} 
-           key={task.id}
-            delNote={this.delNote}
-            editNote={this.editNote}
-           />
-          )
-         })}
-         <br/><br/>
-         <div>
-         <Taskform addNote={this.addNote}/>
-         </div>
+          <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div className="container">
+              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+              </button>
+              <div className="collapse navbar-collapse" id="navbarResponsive">
+                <ul className="navbar-nav ml-auto">
+                  <li className="nav-item">
+                    <Link className="btn btn-info" to="/logout">Logout</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+           <section className="py-5">
+            <div className="container">
+             
+                 <h1 className="alert alert-info" style={{textAlign:'center'}}>React firebase-todo app</h1>
+                   {this.state.tasks.map((task)=>{
+                    return(
+                     <Task 
+                     taskContent={task.taskContent} 
+                     taskId={task.id} 
+                     key={task.id}
+                      delNote={this.delNote}
+                      editNote={this.editNote}
+                     />
+                    )
+                   })}
+                   <br/><br/>
+                   <div>
+                   <Taskform addNote={this.addNote}/>
+                   </div>
+
+            </div>
+          </section>
+
+          <footer className="py-5 bg-dark">
+            <div className="container">
+              <p className="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+            </div>
+          </footer>
       </div>
     );
   }
